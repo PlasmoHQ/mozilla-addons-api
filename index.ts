@@ -7,15 +7,21 @@ export type Options = {
   extId?: string
 }
 
-const requiredFields = ["apiKey", "apiSecret"]
+export const errorMap = {
+  apiKey:
+    "API Key is required. To get one: https://addons.mozilla.org/en-US/developers/addon/api/key",
+  apiSecret:
+    "API Secret is required. To get one: https://addons.mozilla.org/en-US/developers/addon/api/key"
+}
 
+export const requiredFields = Object.keys(errorMap)
 export class MozillaWebstoreClient {
   options = {} as Options
 
   constructor(options: Options) {
     for (const field of requiredFields) {
       if (!options[field]) {
-        throw new Error(`Option "${field}" is required`)
+        throw new Error(errorMap[field])
       }
 
       this.options[field] = options[field]
