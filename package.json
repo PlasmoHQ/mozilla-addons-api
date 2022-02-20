@@ -1,9 +1,9 @@
 {
-  "name": "quick-ts-template",
+  "name": "@plasmo-corp/mwu",
   "version": "1.0.0",
-  "description": "",
+  "description": "Mozilla Webstore Upload",
   "main": "./dist/index.js",
-  "bin": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist"
   ],
@@ -11,11 +11,14 @@
     "dev": "ts-node-dev --respawn --transpile-only index.ts",
     "start": "ts-node --transpile-only index.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc"
+    "build": "tsc --build",
+    "prepare": "pnpm run build"
   },
   "author": "Plasmo Corp. <support@plasmo.com>",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "sign-addon": "^3.11.0"
+  },
   "devDependencies": {
     "@swc/core": "1.2.143",
     "@swc/helpers": "0.3.3",
