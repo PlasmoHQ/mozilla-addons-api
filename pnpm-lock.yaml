@@ -4,7 +4,7 @@ specifiers:
   '@swc/core': 1.2.143
   '@swc/helpers': 0.3.3
   '@trivago/prettier-plugin-sort-imports': 3.2.0
-  '@types/node': 17.0.18
+  '@types/node': 17.0.19
   prettier: 2.5.1
   regenerator-runtime: 0.13.9
   sign-addon: ^3.11.0
@@ -19,10 +19,10 @@ devDependencies:
   '@swc/core': 1.2.143
   '@swc/helpers': 0.3.3
   '@trivago/prettier-plugin-sort-imports': 3.2.0_prettier@2.5.1
-  '@types/node': 17.0.18
+  '@types/node': 17.0.19
   prettier: 2.5.1
   regenerator-runtime: 0.13.9
-  ts-node: 10.5.0_01ea49813af4e06b418a6aaa33688594
+  ts-node: 10.5.0_2241324aebc5592ee7daf237a6a81d7d
   ts-node-dev: 1.1.8_typescript@4.5.5
   typescript: 4.5.5
 
@@ -447,8 +447,8 @@ packages:
     resolution: {integrity: sha512-eZxlbI8GZscaGS7kkc/trHTT5xgrjH3/1n2JDwusC9iahPKWMRvRjJSAN5mCXviuTGQ/lHnhvv8Q1YTpnfz9gA==}
     dev: true
 
-  /@types/node/17.0.18:
-    resolution: {integrity: sha512-eKj4f/BsN/qcculZiRSujogjvp5O/k4lOW5m35NopjZM/QwLOR075a8pJW5hD+Rtdm2DaCVPENS6KtSQnUD6BA==}
+  /@types/node/17.0.19:
+    resolution: {integrity: sha512-PfeQhvcMR4cPFVuYfBN4ifG7p9c+Dlh3yUZR6k+5yQK7wX3gDgVxBly4/WkBRs9x4dmcy1TVl08SY67wwtEvmA==}
     dev: true
 
   /@types/strip-bom/3.0.0:
@@ -1349,7 +1349,7 @@ packages:
       typescript: 4.5.5
     dev: true
 
-  /ts-node/10.5.0_01ea49813af4e06b418a6aaa33688594:
+  /ts-node/10.5.0_2241324aebc5592ee7daf237a6a81d7d:
     resolution: {integrity: sha512-6kEJKwVxAJ35W4akuiysfKwKmjkbYxwQMTBaAxo9KKAx/Yd26mPUyhGz3ji+EsJoAgrLqVsYHNuuYwQe22lbtw==}
     hasBin: true
     peerDependencies:
@@ -1369,7 +1369,7 @@ packages:
       '@tsconfig/node12': 1.0.9
       '@tsconfig/node14': 1.0.1
       '@tsconfig/node16': 1.0.2
-      '@types/node': 17.0.18
+      '@types/node': 17.0.19
       acorn: 8.7.0
       acorn-walk: 8.2.0
       arg: 4.1.3

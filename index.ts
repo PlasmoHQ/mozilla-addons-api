@@ -7,6 +7,12 @@ export type Options = {
   extId?: string
 }
 
+type SubmitResponse = {
+  success: boolean
+  errorCode: "SERVER_FAILURE" | "ADDON_NOT_AUTO_SIGNED" | "VALIDATION_FAILED"
+  errorDetails: string
+}
+
 export const errorMap = {
   apiKey:
     "API Key is required. To get one: https://addons.mozilla.org/en-US/developers/addon/api/key",
@@ -41,7 +47,7 @@ export class MozillaWebstoreClient {
   }
 
   async submit({ filePath, version = "1.0.0" }) {
-    return signAddon({
+    const resp = (await signAddon({
       // Required arguments:
 
       xpiPath: filePath,
@@ -50,6 +56,10 @@ export class MozillaWebstoreClient {
       apiSecret: this.options.apiSecret,
 
       id: this.options.extId
-    })
+    })) as SubmitResponse
+
+    if (!resp.success && resp.errorCode !== "ADDON_NOT_AUTO_SIGNED") {
+      throw new Error(resp.errorDetails)
+    }
   }
 }
