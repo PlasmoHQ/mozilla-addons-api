@@ -28,6 +28,14 @@ export class MozillaWebstoreClient {
     }
 
     if (typeof options.extId === "string" && options.extId.length > 0) {
+      if (!options.extId.startsWith("{")) {
+        options.extId = "{" + options.extId
+      }
+
+      if (!options.extId.endsWith("}")) {
+        options.extId += "}"
+      }
+
       this.options.extId = options.extId
     }
   }
