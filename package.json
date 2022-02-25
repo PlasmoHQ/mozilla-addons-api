@@ -1,6 +1,6 @@
 {
   "name": "@plasmo-corp/mwu",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "description": "Mozilla Webstore Upload",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -19,6 +19,13 @@
     "url": "https://github.com/plasmo-corp/mwu.git"
   },
   "author": "Plasmo Corp. <support@plasmo.com>",
+  "keywords": [
+    "browser-extensions",
+    "firefox",
+    "webext",
+    "browser-addons",
+    "browser-plugins"
+  ],
   "license": "MIT",
   "dependencies": {
     "sign-addon": "3.11.0"
