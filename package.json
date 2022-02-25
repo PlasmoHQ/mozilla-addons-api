@@ -1,6 +1,6 @@
 {
   "name": "@plasmo-corp/mwu",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "description": "Mozilla Webstore Upload",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -8,11 +8,11 @@
     "dist"
   ],
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only index.ts",
-    "start": "ts-node --transpile-only index.ts",
+    "dev": "esbuild index.ts --bundle --watch --platform=node --outdir=dist",
+    "build": "esbuild index.ts --bundle --minify --platform=node --outdir=dist",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc --build",
-    "prepare": "pnpm run build"
+    "clean": "rimraf dist",
+    "prepare": "run-s clean build"
   },
   "repository": {
     "type": "git",
@@ -24,14 +24,12 @@
     "sign-addon": "3.11.0"
   },
   "devDependencies": {
-    "@swc/core": "1.2.145",
-    "@swc/helpers": "0.3.3",
+    "@plasmo-corp/rps": "1.0.1",
     "@trivago/prettier-plugin-sort-imports": "3.2.0",
     "@types/node": "17.0.19",
+    "esbuild": "0.14.23",
     "prettier": "2.5.1",
-    "regenerator-runtime": "0.13.9",
-    "ts-node": "10.5.0",
-    "ts-node-dev": "1.1.8",
+    "rimraf": "3.0.2",
     "typescript": "4.5.5"
   }
 }
