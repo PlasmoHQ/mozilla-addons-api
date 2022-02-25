@@ -24,7 +24,7 @@
     "sign-addon": "3.11.0"
   },
   "devDependencies": {
-    "@plasmo-corp/rps": "1.0.1",
+    "@plasmo-corp/rps": "1.1.0",
     "@trivago/prettier-plugin-sort-imports": "3.2.0",
     "@types/node": "17.0.19",
     "esbuild": "0.14.23",
