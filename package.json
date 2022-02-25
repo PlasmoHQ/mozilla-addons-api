@@ -1,6 +1,6 @@
 {
   "name": "@plasmo-corp/mwu",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Mozilla Webstore Upload",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -14,10 +14,14 @@
     "build": "tsc --build",
     "prepare": "pnpm run build"
   },
+  "repository": {
+    "type": "git",
+    "url": "github:plasmo-corp/mwu"
+  },
   "author": "Plasmo Corp. <support@plasmo.com>",
   "license": "MIT",
   "dependencies": {
-    "sign-addon": "^3.11.0"
+    "sign-addon": "3.11.0"
   },
   "devDependencies": {
     "@swc/core": "1.2.143",
