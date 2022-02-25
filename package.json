@@ -1,6 +1,6 @@
 {
   "name": "@plasmo-corp/mwu",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "Mozilla Webstore Upload",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "github:plasmo-corp/mwu"
+    "url": "https://github.com/plasmo-corp/mwu.git"
   },
   "author": "Plasmo Corp. <support@plasmo.com>",
   "license": "MIT",
