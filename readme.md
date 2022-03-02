@@ -15,7 +15,7 @@ Feature includes:
 import { MozillaWebstoreClient } from "@plasmo-corp/mwu"
 
 const client = new MozillaWebstoreClient({
-  extId,
+  extUuid,
   apiKey,
   apiSecret
 })

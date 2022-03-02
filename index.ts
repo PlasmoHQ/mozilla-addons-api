@@ -4,7 +4,11 @@ export type Options = {
   apiKey: string
   apiSecret: string
 
+  /**
+   * @deprecated Use extUuid instead. Will be removed in 2.x
+   */
   extId?: string
+  extUuid?: string
 }
 
 type SubmitResponse = {
@@ -33,21 +37,29 @@ export class MozillaWebstoreClient {
       this.options[field] = options[field]
     }
 
-    if (typeof options.extId === "string" && options.extId.length > 0) {
-      if (!options.extId.startsWith("{")) {
-        options.extId = "{" + options.extId
+    if (
+      typeof options.extId === "string" &&
+      options.extId.length > 0 &&
+      !options.extUuid
+    ) {
+      options.extUuid = options.extId
+    }
+
+    if (typeof options.extUuid === "string" && options.extUuid.length > 0) {
+      if (!options.extUuid.startsWith("{")) {
+        options.extUuid = "{" + options.extUuid
       }
 
-      if (!options.extId.endsWith("}")) {
-        options.extId += "}"
+      if (!options.extUuid.endsWith("}")) {
+        options.extUuid += "}"
       }
 
-      this.options.extId = options.extId
+      this.options.extUuid = options.extUuid
     }
   }
 
   async submit({ filePath, version = "1.0.0" }) {
-    const resp = (await signAddon({
+    const resp: SubmitResponse = await signAddon({
       // Required arguments:
 
       xpiPath: filePath,
@@ -55,8 +67,8 @@ export class MozillaWebstoreClient {
       apiKey: this.options.apiKey,
       apiSecret: this.options.apiSecret,
 
-      id: this.options.extId
-    })) as SubmitResponse
+      id: this.options.extUuid
+    })
 
     if (!resp.success && resp.errorCode !== "ADDON_NOT_AUTO_SIGNED") {
       throw new Error(resp.errorDetails)
