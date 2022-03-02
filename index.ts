@@ -4,11 +4,7 @@ export type Options = {
   apiKey: string
   apiSecret: string
 
-  /**
-   * @deprecated Use extUuid instead. Will be removed in 2.x
-   */
   extId?: string
-  extUuid?: string
 }
 
 type SubmitResponse = {
@@ -37,24 +33,16 @@ export class MozillaWebstoreClient {
       this.options[field] = options[field]
     }
 
-    if (
-      typeof options.extId === "string" &&
-      options.extId.length > 0 &&
-      !options.extUuid
-    ) {
-      options.extUuid = options.extId
-    }
-
-    if (typeof options.extUuid === "string" && options.extUuid.length > 0) {
-      if (!options.extUuid.startsWith("{")) {
-        options.extUuid = "{" + options.extUuid
+    if (typeof options.extId === "string" && options.extId.length > 0) {
+      if (!options.extId.startsWith("{")) {
+        options.extId = "{" + options.extId
       }
 
-      if (!options.extUuid.endsWith("}")) {
-        options.extUuid += "}"
+      if (!options.extId.endsWith("}")) {
+        options.extId += "}"
       }
 
-      this.options.extUuid = options.extUuid
+      this.options.extId = options.extId
     }
   }
 
@@ -67,7 +55,7 @@ export class MozillaWebstoreClient {
       apiKey: this.options.apiKey,
       apiSecret: this.options.apiSecret,
 
-      id: this.options.extUuid
+      id: this.options.extId
     })
 
     if (!resp.success && resp.errorCode !== "ADDON_NOT_AUTO_SIGNED") {

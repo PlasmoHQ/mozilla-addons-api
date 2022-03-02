@@ -1,6 +1,6 @@
 {
   "name": "@plasmo-corp/mwu",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "description": "Mozilla Webstore Upload",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
