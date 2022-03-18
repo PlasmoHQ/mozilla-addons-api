@@ -33,7 +33,12 @@ export class MozillaWebstoreClient {
       this.options[field] = options[field]
     }
 
-    if (typeof options.extId === "string" && options.extId.length > 0) {
+    // Make sure it's not an email-based extID
+    if (
+      typeof options.extId === "string" &&
+      options.extId.length > 0 &&
+      !options.extId.includes("@")
+    ) {
       if (!options.extId.startsWith("{")) {
         options.extId = "{" + options.extId
       }

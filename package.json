@@ -1,6 +1,6 @@
 {
   "name": "@plasmo-corp/mwu",
-  "version": "1.7.1",
+  "version": "1.8.0",
   "description": "Mozilla Webstore Upload",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -35,12 +35,12 @@
     "sign-addon": "3.11.0"
   },
   "devDependencies": {
-    "@plasmo-corp/rps": "1.1.0",
+    "@plasmo-corp/rps": "1.2.1",
     "@trivago/prettier-plugin-sort-imports": "3.2.0",
     "@types/node": "17.0.21",
-    "esbuild": "0.14.23",
-    "prettier": "2.5.1",
+    "esbuild": "0.14.27",
+    "prettier": "2.6.0",
     "rimraf": "3.0.2",
-    "typescript": "4.5.5"
+    "typescript": "4.6.2"
   }
 }
