@@ -3,7 +3,7 @@
     "outDir": "dist",
     "baseUrl": ".",
     "paths": {
-      "~*": ["./*"]
+      "~*": ["./src/*"]
     },
     "resolveJsonModule": true,
     "sourceMap": true,
@@ -16,9 +16,10 @@
     "noImplicitAny": false,
     "moduleResolution": "node",
     "isolatedModules": true,
-    "module": "ES2022",
-    "target": "ES2022",
-    "allowJs": true
+    "module": "es2022",
+    "target": "es2022",
+    "allowJs": true,
+    "importsNotUsedAsValues": "error"
   },
-  "include": ["index.ts"]
+  "include": ["src/**/*.ts"]
 }
