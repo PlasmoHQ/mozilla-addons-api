@@ -1,10 +1,11 @@
 # Mozilla Webstore Upload
 
-This module uses [mozilla/sign-addon](https://github.com/mozilla/sign-addon) to sign and submit an extension to a mozilla add-on server. It handles error and throw properly, as well as suppressing some non-error such as `ADDON_NOT_AUTO_SIGNED` (occured when the extension already exist in the store, [see this issue](https://github.com/mozilla/web-ext/issues/804#issuecomment-302588357))
+This module uses [got](https://github.com/sindresorhus/got) to upload and check status of browser add-on to the [mozilla add-on server](https://addons-server.readthedocs.io/en/latest/topics/api/signing.html#uploading-a-version). The module migrated from [mozilla/sign-addon](https://github.com/mozilla/sign-addon/) as it uses the unmaintained [request module](https://www.npmjs.com/package/request).
 
 Feature includes:
 
 - TypeScript
+- ESM (if you need cjs, file an issue)
 - Frozen dependencies, updated via renovatebot
 
 ## Usage
