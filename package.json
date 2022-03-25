@@ -1,13 +1,16 @@
 {
   "name": "@plasmo-corp/mwu",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Mozilla Webstore Upload",
-  "module": "./dist/index.js",
+  "exports": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "type": "module",
   "files": [
     "dist"
   ],
+  "engines": {
+    "node": ">=16.14"
+  },
   "scripts": {
     "dev": "esbuild src/index.ts --format=esm --bundle --watch --sourcemap --platform=node --outdir=dist --external:got --external:jsonwebtoken",
     "build": "tsup src/index.ts --format esm --minify --dts-resolve",
