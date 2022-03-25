@@ -10,8 +10,7 @@
   ],
   "scripts": {
     "dev": "esbuild src/index.ts --format=esm --bundle --watch --sourcemap --platform=node --outdir=dist --external:got --external:jsonwebtoken",
-    "#dev": "tsup src/index.ts --target=node16 --format esm --watch --sourcemap",
-    "build": "tsup src/index.ts --minify --dts-resolve",
+    "build": "tsup src/index.ts --format esm --minify --dts-resolve",
     "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest",
     "clean": "rimraf dist",
     "prepublishOnly": "run-s clean build"
