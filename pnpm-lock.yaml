@@ -8,7 +8,7 @@ specifiers:
   '@types/node': 17.0.23
   cross-env: 7.0.3
   esbuild: 0.14.27
-  form-data-encoder: 1.7.1
+  form-data-encoder: 1.7.2
   formdata-node: 4.3.2
   got: 12.0.2
   jest: 27.5.1
@@ -20,7 +20,7 @@ specifiers:
   typescript: 4.6.3
 
 dependencies:
-  form-data-encoder: 1.7.1
+  form-data-encoder: 1.7.2
   formdata-node: 4.3.2
   got: 12.0.2
   jsonwebtoken: 8.5.1
@@ -1724,6 +1724,10 @@ packages:
 
   /form-data-encoder/1.7.1:
     resolution: {integrity: sha512-EFRDrsMm/kyqbTQocNvRXMLjc7Es2Vk+IQFx/YW7hkUH1eBl4J1fqiP34l74Yt0pFLCNpc06fkbVk00008mzjg==}
+    dev: false
+
+  /form-data-encoder/1.7.2:
+    resolution: {integrity: sha512-qfqtYan3rxrnCk1VYaA4H+Ms9xdpPqvLZa6xmMgFvhO32x7/3J/ExcTd6qpxM0vH2GdMI+poehyBZvqfMTto8A==}
     dev: false
 
   /form-data/3.0.1:
