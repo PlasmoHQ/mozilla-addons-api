@@ -1,12 +1,14 @@
 # Mozilla Webstore Upload
 
-This module uses [got](https://github.com/sindresorhus/got) to upload and check status of browser add-on to the [mozilla add-on server](https://addons-server.readthedocs.io/en/latest/topics/api/signing.html#uploading-a-version). The module migrated from [mozilla/sign-addon](https://github.com/mozilla/sign-addon/) as it uses the unmaintained [request module](https://www.npmjs.com/package/request).
+A nodejs library from [plasmo](https://www.plasmo.com/) to publish browser add-ons to the [Mozilla Firefox Add-ons Store](https://addons.mozilla.org/en-US/firefox/).
+
+This library uses [got](https://github.com/sindresorhus/got) to upload and check status of browser add-on with the [mozilla add-on server](https://addons-server.readthedocs.io/en/latest/topics/api/signing.html#uploading-a-version). It is a hard fork of [mozilla/sign-addon](https://github.com/mozilla/sign-addon/) which uses the unmaintained [request module](https://www.npmjs.com/package/request).
 
 Feature includes:
 
 - TypeScript
 - ESM (if you need cjs, file an issue)
-- Frozen dependencies, updated via renovatebot
+- Pinned dependencies, updated via renovatebot
 
 ## Usage
 
@@ -33,4 +35,4 @@ await client.submit({
 
 # License
 
-[MIT](./license) 🚀 [Plasmo Corp.](https://plasmo.com)
+[MIT](./license) 🚀 [Plasmo](https://plasmo.com)
