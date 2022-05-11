@@ -13,7 +13,7 @@ Feature includes:
 ## nodejs API
 
 ```ts
-import { MozillaWebstoreClient } from "@plasmo-corp/mwu"
+import { MozillaWebstoreClient } from "@PlasmoHQ/mwu"
 
 const client = new MozillaWebstoreClient({
   extId,

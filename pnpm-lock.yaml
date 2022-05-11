@@ -2,7 +2,7 @@ lockfileVersion: 5.3
 
 specifiers:
   '@jest/globals': 27.5.1
-  '@plasmo-corp/rps': 1.2.1
+  '@PlasmoHQ/rps': 1.2.1
   '@trivago/prettier-plugin-sort-imports': 3.2.0
   '@types/jsonwebtoken': 8.5.8
   '@types/node': 17.0.25
@@ -27,7 +27,7 @@ dependencies:
 
 devDependencies:
   '@jest/globals': 27.5.1
-  '@plasmo-corp/rps': 1.2.1
+  '@PlasmoHQ/rps': 1.2.1
   '@trivago/prettier-plugin-sort-imports': 3.2.0_prettier@2.6.2
   '@types/jsonwebtoken': 8.5.8
   '@types/node': 17.0.25
@@ -691,7 +691,7 @@ packages:
       fastq: 1.13.0
     dev: true
 
-  /@plasmo-corp/rps/1.2.1:
+  /@PlasmoHQ/rps/1.2.1:
     resolution: {integrity: sha512-dIX+3ffeeCNyuM2iGxv14EiodsbGOCZECcPruUf+GPEqCvQ/lH+ecCu83x20PHaDFCxZU0tgDxMzMpUSbS2axw==}
     hasBin: true
     dependencies:
