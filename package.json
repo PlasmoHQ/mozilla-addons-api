@@ -1,5 +1,5 @@
 {
-  "name": "@plasmo-corp/mwu",
+  "name": "@plasmohq/mwu",
   "version": "2.2.2",
   "description": "Mozilla Webstore Upload",
   "exports": "./dist/index.js",
