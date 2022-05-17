@@ -41,7 +41,7 @@ export const requiredFields = Object.keys(errorMap)
 
 const baseApiUrl = "https://addons.mozilla.org/api"
 
-export class MozillaWebstoreClient {
+export class MozillaAddonsAPI {
   options = {} as Options
 
   get productEndpoint() {
