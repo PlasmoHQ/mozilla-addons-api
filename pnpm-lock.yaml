@@ -8,7 +8,7 @@ specifiers:
   '@types/node': 17.0.34
   cross-env: 7.0.3
   esbuild: 0.14.39
-  form-data-encoder: 1.7.2
+  form-data-encoder: 2.0.1
   formdata-node: 4.3.2
   got: 12.0.4
   jest: 28.1.0
@@ -20,7 +20,7 @@ specifiers:
   typescript: 4.6.4
 
 dependencies:
-  form-data-encoder: 1.7.2
+  form-data-encoder: 2.0.1
   formdata-node: 4.3.2
   got: 12.0.4
   jsonwebtoken: 8.5.1
@@ -250,12 +250,16 @@ packages:
     resolution: {integrity: sha512-oG0ej7efjEXxb4UgE+klVx+3j4MVo+A2vCzm7OUN4CLo6WhQ+vSOD2yJ8m7B+DghObxtLxt3EfgMWpq+AsWehQ==}
     engines: {node: '>=6.0.0'}
     hasBin: true
+    dependencies:
+      '@babel/types': 7.17.12
     dev: true
 
   /@babel/parser/7.17.12:
     resolution: {integrity: sha512-FLzHmN9V3AJIrWfOpvRlZCeVg/WLdicSnTMsLur6uDj9TT8ymUlG9XxURdW/XvuygK+2CW0poOJABdA4m/YKxA==}
     engines: {node: '>=6.0.0'}
     hasBin: true
+    dependencies:
+      '@babel/types': 7.17.12
     dev: true
 
   /@babel/plugin-syntax-async-generators/7.8.4_@babel+core@7.17.12:
@@ -1651,8 +1655,9 @@ packages:
     resolution: {integrity: sha512-EFRDrsMm/kyqbTQocNvRXMLjc7Es2Vk+IQFx/YW7hkUH1eBl4J1fqiP34l74Yt0pFLCNpc06fkbVk00008mzjg==}
     dev: false
 
-  /form-data-encoder/1.7.2:
-    resolution: {integrity: sha512-qfqtYan3rxrnCk1VYaA4H+Ms9xdpPqvLZa6xmMgFvhO32x7/3J/ExcTd6qpxM0vH2GdMI+poehyBZvqfMTto8A==}
+  /form-data-encoder/2.0.1:
+    resolution: {integrity: sha512-Oy+P9w5mnO4TWXVgUiQvggNKPI9/ummcSt5usuIV6HkaLKigwzPpoenhEqmGmx3zHqm6ZLJ+CR/99N8JLinaEw==}
+    engines: {node: '>= 14.17'}
     dev: false
 
   /formdata-node/4.3.2:
