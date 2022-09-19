@@ -43,7 +43,7 @@
     "@jest/globals": "29.0.3",
     "@plasmohq/mystic-box": "1.4.0",
     "@plasmohq/rps": "1.5.1",
-    "@trivago/prettier-plugin-sort-imports": "3.3.0",
+    "@plasmohq/prettier-plugin-sort-imports": "3.5.1",
     "@types/jsonwebtoken": "8.5.9",
     "@types/node": "18.7.18",
     "cross-env": "7.0.3",
