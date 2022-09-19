@@ -7,16 +7,21 @@ const config = {
 
   clearMocks: true,
   moduleFileExtensions: ["js", "ts"],
+  extensionsToTreatAsEsm: [".ts"],
   transform: {
-    "^.+\\.ts$": ["ts-jest", {
-      useESM: true
-    }]
+    "^.+\\.ts$": [
+      "ts-jest",
+      {
+        useESM: true
+      }
+    ]
   },
   testMatch: ["**/*.test.ts"],
   verbose: true,
   moduleNameMapper: {
-    "^~(.*)$": "<rootDir>/dist/$1",
+    "^~(.*)$": "<rootDir>/src/$1",
     "^(\\.{1,2}/.*)\\.js$": "$1"
-  }
+  },
+  modulePaths: ["<rootDir>"]
 }
 export default config
