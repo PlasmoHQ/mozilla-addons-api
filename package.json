@@ -1,6 +1,6 @@
 {
   "name": "@plasmohq/mozilla-addons-api",
-  "version": "2.3.2",
+  "version": "2.3.3",
   "description": "Mozilla Add-ons API for NodeJS",
   "exports": "./dist/index.js",
   "types": "./dist/index.d.ts",
