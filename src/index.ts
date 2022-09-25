@@ -70,9 +70,9 @@ export class MozillaAddonsAPI {
       if (!options.extId.endsWith("}")) {
         options.extId += "}"
       }
-
-      this.options.extId = options.extId
     }
+
+    this.options.extId = options.extId
   }
 
   submit = async ({ filePath, version = "1.0.0" }) => {
