@@ -35,7 +35,7 @@
   "dependencies": {
     "form-data-encoder": "2.1.4",
     "formdata-node": "5.0.0",
-    "got": "12.5.3",
+    "got": "12.6.0",
     "jsonwebtoken": "9.0.0"
   },
   "devDependencies": {
