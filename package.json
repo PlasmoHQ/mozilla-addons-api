@@ -44,7 +44,7 @@
     "@plasmohq/prettier-plugin-sort-imports": "3.6.1",
     "@plasmohq/rps": "1.8.1",
     "@types/jsonwebtoken": "9.0.1",
-    "@types/node": "18.11.18",
+    "@types/node": "18.15.11",
     "cross-env": "7.0.3",
     "esbuild": "0.17.0",
     "fflate": "0.7.4",
