@@ -2,7 +2,7 @@ import { expect, test } from "@jest/globals"
 import { strFromU8, unzipSync } from "fflate"
 import { readFile } from "fs/promises"
 
-import { MozillaAddonsAPI, Options } from "~index"
+import { MozillaAddonsAPI, type Options } from "~index"
 
 test("test upload test.zip artifact", async () => {
   const unzipped = unzipSync(await readFile("test.zip"))
