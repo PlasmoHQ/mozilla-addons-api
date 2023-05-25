@@ -8,25 +8,44 @@ export type Options = {
   apiSecret: string
 
   extId?: string
+  channel?: "listed" | "unlisted"
 }
 
-type StatusResponse = {
-  guid: string
-  active: boolean
-  automated_signing: boolean
-  files: Array<{
-    download_url: string
-    hash: string
-    signed: boolean
-  }>
-  passed_review: boolean
-  pk: string
+type UploadResponse = {
+  uuid: string
+  channel: "listed" | "unlisted"
   processed: boolean
-  reviewed: boolean
+  submitted: boolean
   url: string
   valid: boolean
-  validation_results: Record<string, string>
-  validation_url: string
+  validation: object
+  version: string
+}
+
+type VersionResponse = {
+  id: number
+  approval_notes: string
+  channel: "listed" | "unlisted"
+  compatibility: object
+  edit_url: string
+  file: {
+    id: number
+    created: string
+    hash: string
+    is_mozilla_signed_extension: boolean
+    size: number
+    status: "public" | "disabled" | "nominated"
+    url: string
+    permissions: string[]
+    optional_permissions: string[]
+    host_permissions: string[]
+  }
+  is_disabled: boolean
+  is_strict_compatibility_enabled: boolean
+  license: object | null
+  release_notes: string | null
+  reviewed: string
+  source: string | null
   version: string
 }
 
@@ -77,7 +96,9 @@ export class MozillaAddonsAPI {
   options = {} as Options
 
   get productEndpoint() {
-    return `${baseApiUrl}/v4/addons/${encodeURIComponent(this.options.extId)}`
+    return `${baseApiUrl}/v5/addons/addon/${encodeURIComponent(
+      this.options.extId
+    )}`
   }
 
   constructor(options: Options) {
@@ -108,17 +129,20 @@ export class MozillaAddonsAPI {
   }
 
   submit = async ({ filePath, version = "1.0.0" }) => {
-    const addonEndpoint = `${
-      this.productEndpoint
-    }/versions/${encodeURIComponent(version)}/`
-
-    const formData = new FormData()
-    formData.append("upload", await fileFromPath(filePath))
+    const uploadResult = await this.uploadFile({
+      filePath,
+      channel: this.options.channel
+    })
 
     const accessToken = await this.getAccessToken()
 
-    const resp = await got.put(addonEndpoint, {
-      throwHttpErrors: false,
+    // https://addons-server.readthedocs.io/en/latest/topics/api/addons.html#version-create
+    const uploadEndpoint = `${this.productEndpoint}/versions/`
+
+    const formData = new FormData()
+    formData.append("upload", uploadResult.uuid)
+
+    const resp = await got.post(uploadEndpoint, {
       body: formData,
       headers: {
         Authorization: `JWT ${accessToken}`
@@ -139,10 +163,42 @@ export class MozillaAddonsAPI {
       }
     }
 
-    return JSON.parse(resp.body) as StatusResponse
+    return JSON.parse(resp.body) as VersionResponse
   }
 
-  getUploadStatus = async ({ version = "1.0.0" }) => {
+  uploadFile = async ({ filePath, channel = "listed" }) => {
+    const accessToken = await this.getAccessToken()
+
+    // https://addons-server.readthedocs.io/en/latest/topics/api/addons.html#upload-create
+    const uploadEndpoint = `${baseApiUrl}/addons/upload/`
+
+    const formData = new FormData()
+    formData.append("upload", await fileFromPath(filePath))
+    formData.append("channel", channel)
+
+    const resp = await got.post(uploadEndpoint, {
+      body: formData,
+      headers: {
+        Authorization: `JWT ${accessToken}`
+      }
+    })
+
+    if (resp.statusCode >= 400) {
+      if (resp.statusCode === 401) {
+        throw new Error("Invalid access token")
+      } else if (resp.statusCode === 403) {
+        throw new Error("You do not own this add-on")
+      } else {
+        console.log(resp.body)
+
+        throw new Error(JSON.parse(resp.body).error || "Unknown error")
+      }
+    }
+
+    return JSON.parse(resp.body) as UploadResponse
+  }
+
+  getVersion = async ({ version = "1.0.0" }) => {
     const accessToken = await this.getAccessToken()
 
     const addonEndpoint = `${

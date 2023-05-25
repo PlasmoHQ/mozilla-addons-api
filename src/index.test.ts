@@ -20,7 +20,7 @@ test("test upload test.zip artifact", async () => {
     version
   })
 
-  const uploadStatus = await client.getUploadStatus({ version })
+  const uploadStatus = await client.getVersion({ version })
 
-  expect(uploadStatus.guid).toBe(resp.guid)
+  expect(uploadStatus.id).toBe(resp.id)
 })
