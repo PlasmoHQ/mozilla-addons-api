@@ -30,6 +30,38 @@ type StatusResponse = {
   version: string
 }
 
+type ProfileResponse = {
+  id: number
+  name: string
+  url: string
+  username: string
+  average_addon_rating: number | null
+  created: string
+  biography: string
+  has_anonymous_display_name: boolean
+  has_anonymous_username: boolean
+  homepage: string
+  is_addon_developer: boolean
+  is_artist: boolean
+  location: string
+  occupation: string
+  num_addons_listed: number
+  picture_type: string
+  picture_url: string
+  deleted: boolean
+  display_name: string
+  email: string
+  fxa_edit_email_url: string
+  last_login: string
+  last_login_ip: string
+  permissions: string[]
+  read_dev_agreement: string
+  site_status: {
+    read_only: boolean
+    notice: string | null
+  }
+}
+
 export const errorMap = {
   apiKey:
     "API Key is required. To get one: https://addons.mozilla.org/en-US/developers/addon/api/key",
@@ -123,7 +155,7 @@ export class MozillaAddonsAPI {
           Authorization: `JWT ${accessToken}`
         }
       })
-      .json<StatusResponse>()
+      .json<VersionResponse>()
   }
 
   getProfile = async () => {
@@ -137,7 +169,7 @@ export class MozillaAddonsAPI {
           Authorization: `JWT ${accessToken}`
         }
       })
-      .json<StatusResponse>()
+      .json<ProfileResponse>()
   }
 
   getAccessToken = async () => {
