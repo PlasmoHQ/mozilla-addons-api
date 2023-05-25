@@ -45,7 +45,7 @@ export class MozillaAddonsAPI {
   options = {} as Options
 
   get productEndpoint() {
-    return `${baseApiUrl}/v5/addons/${encodeURIComponent(this.options.extId)}`
+    return `${baseApiUrl}/v4/addons/${encodeURIComponent(this.options.extId)}`
   }
 
   constructor(options: Options) {
