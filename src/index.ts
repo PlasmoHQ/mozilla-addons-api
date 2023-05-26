@@ -141,40 +141,32 @@ export class MozillaAddonsAPI {
       channel: this.options.channel
     })
 
-    const accessToken = await this.getAccessToken()
+    // Wait for upload to be validated
+    let uploadValidated = false
+    for (let i = 0; i < 3; i++) {
+      const uploadStatus = await this.getUpload({
+        uploadUuid: uploadResult.uuid
+      })
 
-    // https://addons-server.readthedocs.io/en/latest/topics/api/addons.html#version-create
-    const uploadEndpoint = `${this.productEndpoint}/versions/`
-
-    const formData = new FormData()
-    formData.append("upload", uploadResult.uuid)
-
-    const resp = await got.post(uploadEndpoint, {
-      body: formData,
-      headers: {
-        Authorization: `JWT ${accessToken}`
-      },
-      throwHttpErrors: false
-    })
-
-    if (resp.statusCode >= 400) {
-      if (resp.statusCode === 401) {
-        throw new Error("Invalid access token")
-      } else if (resp.statusCode === 403) {
-        throw new Error("You do not own this add-on")
-      } else if (resp.statusCode === 409) {
-        throw new Error(`Version ${version} already exists`)
-      } else {
-        console.log(resp.body)
-
-        throw new Error(JSON.parse(resp.body).error || "Unknown error")
+      if (uploadStatus.valid) {
+        uploadValidated = true
+        break
       }
+
+      await new Promise((r) => setTimeout(r, 2000))
     }
 
-    return JSON.parse(resp.body) as VersionResponse
+    if (!uploadValidated) {
+      throw new Error("Upload has not been validated in time.")
+    }
+
+    return await this.createVersion({
+      uploadUuid: uploadResult.uuid,
+      version
+    })
   }
 
-  uploadFile = async ({ filePath, channel = "listed" }) => {
+  uploadFile = async ({ filePath, channel = "unlisted" }) => {
     const accessToken = await this.getAccessToken()
 
     // https://addons-server.readthedocs.io/en/latest/topics/api/addons.html#upload-create
@@ -205,6 +197,54 @@ export class MozillaAddonsAPI {
     }
 
     return JSON.parse(resp.body) as UploadResponse
+  }
+
+  createVersion = async ({ uploadUuid, version }) => {
+    const accessToken = await this.getAccessToken()
+
+    // https://addons-server.readthedocs.io/en/latest/topics/api/addons.html#version-create
+    const uploadEndpoint = `${this.productEndpoint}/versions/`
+
+    const formData = new FormData()
+    formData.append("upload", uploadUuid)
+
+    const resp = await got.post(uploadEndpoint, {
+      body: formData,
+      headers: {
+        Authorization: `JWT ${accessToken}`
+      },
+      throwHttpErrors: false
+    })
+
+    if (resp.statusCode >= 400) {
+      if (resp.statusCode === 401) {
+        throw new Error("Invalid access token")
+      } else if (resp.statusCode === 403) {
+        throw new Error("You do not own this add-on")
+      } else if (resp.statusCode === 409) {
+        throw new Error(`Version ${version} already exists`)
+      } else {
+        console.log(resp.body)
+
+        throw new Error(JSON.parse(resp.body).error || "Unknown error")
+      }
+    }
+
+    return JSON.parse(resp.body) as VersionResponse
+  }
+
+  getUpload = async ({ uploadUuid }) => {
+    const accessToken = await this.getAccessToken()
+
+    const addonEndpoint = `${baseApiUrl}/v5/addons/upload/${uploadUuid}`
+
+    return got
+      .get(addonEndpoint, {
+        headers: {
+          Authorization: `JWT ${accessToken}`
+        }
+      })
+      .json<UploadResponse>()
   }
 
   getVersion = async ({ version = "1.0.0" }) => {
