@@ -126,6 +126,13 @@ export class MozillaAddonsAPI {
     }
 
     this.options.extId = options.extId
+
+    if (
+      typeof options.channel === "string" &&
+      (options.channel === "listed" || options.channel === "unlisted")
+    ) {
+      this.options.channel = options.channel
+    }
   }
 
   submit = async ({ filePath, version = "1.0.0" }) => {
