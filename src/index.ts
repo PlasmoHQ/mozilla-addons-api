@@ -146,7 +146,8 @@ export class MozillaAddonsAPI {
       body: formData,
       headers: {
         Authorization: `JWT ${accessToken}`
-      }
+      },
+      throwHttpErrors: false
     })
 
     if (resp.statusCode >= 400) {
@@ -180,7 +181,8 @@ export class MozillaAddonsAPI {
       body: formData,
       headers: {
         Authorization: `JWT ${accessToken}`
-      }
+      },
+      throwHttpErrors: false
     })
 
     if (resp.statusCode >= 400) {
