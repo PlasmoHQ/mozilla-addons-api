@@ -171,7 +171,7 @@ export class MozillaAddonsAPI {
     const accessToken = await this.getAccessToken()
 
     // https://addons-server.readthedocs.io/en/latest/topics/api/addons.html#upload-create
-    const uploadEndpoint = `${baseApiUrl}/addons/upload/`
+    const uploadEndpoint = `${baseApiUrl}/v5/addons/upload/`
 
     const formData = new FormData()
     formData.append("upload", await fileFromPath(filePath))
