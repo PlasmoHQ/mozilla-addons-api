@@ -3,7 +3,7 @@ import { fileFromPath } from "formdata-node/file-from-path"
 import got from "got"
 import jwt from "jsonwebtoken"
 
-import { retry } from "./utils.js"
+import { retry } from "./utils"
 
 type UploadResponse = {
   uuid: string
