@@ -35,16 +35,16 @@
   "dependencies": {
     "form-data-encoder": "3.0.0",
     "formdata-node": "5.0.0",
-    "got": "12.6.0",
+    "got": "13.0.0",
     "jsonwebtoken": "9.0.0"
   },
   "devDependencies": {
     "@jest/globals": "29.5.0",
     "@plasmohq/mystic-box": "1.4.0",
     "@plasmohq/prettier-plugin-sort-imports": "3.6.4",
-    "@plasmohq/rps": "1.8.5",
+    "@plasmohq/rps": "1.8.6",
     "@types/jsonwebtoken": "9.0.2",
-    "@types/node": "20.2.3",
+    "@types/node": "20.2.5",
     "cross-env": "7.0.3",
     "esbuild": "0.17.19",
     "fflate": "0.8.0",
