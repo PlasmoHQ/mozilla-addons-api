@@ -3,13 +3,7 @@ import { fileFromPath } from "formdata-node/file-from-path"
 import got from "got"
 import jwt from "jsonwebtoken"
 
-export type Options = {
-  apiKey: string
-  apiSecret: string
-
-  extId?: string
-  channel?: "listed" | "unlisted"
-}
+import { retry } from "./utils"
 
 type UploadResponse = {
   uuid: string
@@ -81,6 +75,15 @@ type ProfileResponse = {
   }
 }
 
+export type Options = {
+  apiKey: string
+  apiSecret: string
+
+  extId?: string
+  channel?: UploadResponse["channel"]
+  license?: string
+}
+
 export const errorMap = {
   apiKey:
     "API Key is required. To get one: https://addons.mozilla.org/en-US/developers/addon/api/key",
@@ -127,35 +130,32 @@ export class MozillaAddonsAPI {
 
     this.options.extId = options.extId
 
-    if (
-      typeof options.channel === "string" &&
-      (options.channel === "listed" || options.channel === "unlisted")
-    ) {
-      this.options.channel = options.channel
+    this.options.channel = options.channel || "listed"
+
+    if (options.license === "inherit") {
+      delete options.license
+    } else {
+      options.license = options.license || "all-rights-reserved"
     }
   }
 
   submit = async ({ filePath, version = "1.0.0" }) => {
     const uploadResult = await this.uploadFile({
-      filePath,
-      channel: this.options.channel
+      filePath
     })
 
+    const uploadValidated = await retry(
+      async () => {
+        const uploadStatus = await this.getUpload({
+          uploadUuid: uploadResult.uuid
+        })
+        return uploadStatus.valid
+      },
+      8,
+      2400
+    )
+
     // Wait for upload to be validated
-    let uploadValidated = false
-    for (let i = 0; i < 3; i++) {
-      const uploadStatus = await this.getUpload({
-        uploadUuid: uploadResult.uuid
-      })
-
-      if (uploadStatus.valid) {
-        uploadValidated = true
-        break
-      }
-
-      await new Promise((r) => setTimeout(r, 2000))
-    }
-
     if (!uploadValidated) {
       throw new Error("Upload has not been validated in time.")
     }
@@ -166,7 +166,7 @@ export class MozillaAddonsAPI {
     })
   }
 
-  uploadFile = async ({ filePath, channel = "unlisted" }) => {
+  uploadFile = async ({ filePath }) => {
     const accessToken = await this.getAccessToken()
 
     // https://addons-server.readthedocs.io/en/latest/topics/api/addons.html#upload-create
@@ -174,7 +174,7 @@ export class MozillaAddonsAPI {
 
     const formData = new FormData()
     formData.append("upload", await fileFromPath(filePath))
-    formData.append("channel", channel)
+    formData.append("channel", this.options.channel)
 
     const resp = await got.post(uploadEndpoint, {
       body: formData,
