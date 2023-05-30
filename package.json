@@ -34,7 +34,7 @@
   "license": "MIT",
   "dependencies": {
     "form-data-encoder": "3.0.0",
-    "formdata-node": "5.0.0",
+    "formdata-node": "5.0.1",
     "got": "13.0.0",
     "jsonwebtoken": "9.0.0"
   },
