@@ -109,33 +109,31 @@ export class MozillaAddonsAPI {
       if (!options[field]) {
         throw new Error(errorMap[field])
       }
-
-      this.options[field] = options[field]
     }
+
+    this.options = { ...options }
 
     // Make sure it's not an email-based extID
     if (
-      typeof options.extId === "string" &&
-      options.extId.length > 0 &&
-      !options.extId.includes("@")
+      typeof this.options.extId === "string" &&
+      this.options.extId.length > 0 &&
+      !this.options.extId.includes("@")
     ) {
-      if (!options.extId.startsWith("{")) {
-        options.extId = "{" + options.extId
+      if (!this.options.extId.startsWith("{")) {
+        this.options.extId = "{" + options.extId
       }
 
-      if (!options.extId.endsWith("}")) {
-        options.extId += "}"
+      if (!this.options.extId.endsWith("}")) {
+        this.options.extId += "}"
       }
     }
 
-    this.options.extId = options.extId
-
     this.options.channel = options.channel || "listed"
 
-    if (options.license === "inherit") {
-      delete options.license
+    if (this.options.license === "inherit") {
+      delete this.options.license
     } else {
-      options.license = options.license || "all-rights-reserved"
+      this.options.license = this.options.license || "all-rights-reserved"
     }
   }
 
@@ -190,8 +188,6 @@ export class MozillaAddonsAPI {
       } else if (resp.statusCode === 403) {
         throw new Error("You do not own this add-on")
       } else {
-        console.log(resp.body)
-
         throw new Error(JSON.parse(resp.body).error || "Unknown error")
       }
     }
@@ -207,7 +203,9 @@ export class MozillaAddonsAPI {
 
     const formData = new FormData()
     formData.append("upload", uploadUuid)
-
+    if (!!this.options.license) {
+      formData.append("license", this.options.license)
+    }
     const resp = await got.post(uploadEndpoint, {
       body: formData,
       headers: {
