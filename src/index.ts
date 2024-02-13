@@ -84,6 +84,13 @@ export type Options = {
   license?: string
 }
 
+export type SubmitOptions = {
+  filePath: string
+  version?: string
+  sourcePath?: string
+  approvalNotes?: string
+}
+
 export const errorMap = {
   apiKey:
     "API Key is required. To get one: https://addons.mozilla.org/en-US/developers/addon/api/key",
@@ -137,7 +144,14 @@ export class MozillaAddonsAPI {
     }
   }
 
-  submit = async ({ filePath, version = "1.0.0" }) => {
+  submit = async (
+    {
+      filePath,
+      approvalNotes = null,
+      sourcePath = null,
+      version = "1.0.0"
+    }: SubmitOptions
+  ) => {
     const uploadResult = await this.uploadFile({
       filePath
     })
@@ -160,7 +174,9 @@ export class MozillaAddonsAPI {
 
     return await this.createVersion({
       uploadUuid: uploadResult.uuid,
-      version
+      version,
+      approvalNotes,
+      sourcePath
     })
   }
 
@@ -195,7 +211,14 @@ export class MozillaAddonsAPI {
     return JSON.parse(resp.body) as UploadResponse
   }
 
-  createVersion = async ({ uploadUuid, version }) => {
+  createVersion = async (
+    {
+      uploadUuid,
+      version,
+      approvalNotes,
+      sourcePath,
+    }
+  ) => {
     const accessToken = await this.getAccessToken()
 
     // https://addons-server.readthedocs.io/en/latest/topics/api/addons.html#version-create
@@ -203,6 +226,17 @@ export class MozillaAddonsAPI {
 
     const formData = new FormData()
     formData.append("upload", uploadUuid)
+
+    if (sourcePath) {
+      formData.append('source', await fileFromPath(sourcePath))
+    } else {
+      formData.append('source', '')
+    }
+
+    if (approvalNotes) {
+      formData.append('approval_notes', approvalNotes);
+    }
+
     if (!!this.options.license) {
       formData.append("license", this.options.license)
     }
