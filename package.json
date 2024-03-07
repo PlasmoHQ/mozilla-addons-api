@@ -13,7 +13,7 @@
   },
   "scripts": {
     "dev": "tsup src/index.ts --format esm --watch --sourcemap inline",
-    "build": "tsup src/index.ts --format esm --dts-resolve --minify --clean",
+    "build": "tsup src/index.ts --format esm --dts-resolve --sourcemap --clean",
     "test": "run-s test:*",
     "test:zip": "mb test-zip",
     "test:e2e": "cross-env NODE_OPTIONS=--experimental-vm-modules jest",
@@ -33,7 +33,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "form-data-encoder": "3.0.0",
+        "form-data-encoder": "3.0.0",
     "formdata-node": "5.0.1",
     "got": "13.0.0",
     "jsonwebtoken": "9.0.0"
