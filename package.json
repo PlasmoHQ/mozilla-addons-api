@@ -36,14 +36,14 @@
     "form-data-encoder": "3.0.0",
     "formdata-node": "5.0.1",
     "got": "13.0.0",
-    "jsonwebtoken": "9.0.0"
+    "jsonwebtoken": "9.0.2"
   },
   "devDependencies": {
     "@jest/globals": "29.5.0",
     "@plasmo/config": "workspace:*",
     "@plasmohq/mystic-box": "1.4.0",
     "@plasmohq/rps": "1.8.6",
-    "@types/jsonwebtoken": "9.0.2",
+    "@types/jsonwebtoken": "9.0.6",
     "@types/node": "20.3.1",
     "cross-env": "7.0.3",
     "esbuild": "0.18.6",
