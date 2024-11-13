@@ -164,7 +164,7 @@ export class MozillaAddonsAPI {
         return uploadStatus.valid
       },
       8,
-      2400
+      5000
     )
 
     // Wait for upload to be validated
