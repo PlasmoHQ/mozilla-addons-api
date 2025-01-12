@@ -120,21 +120,6 @@ export class MozillaAddonsAPI {
 
     this.options = { ...options }
 
-    // Make sure it's not an email-based extID
-    if (
-      typeof this.options.extId === "string" &&
-      this.options.extId.length > 0 &&
-      !this.options.extId.includes("@")
-    ) {
-      if (!this.options.extId.startsWith("{")) {
-        this.options.extId = "{" + options.extId
-      }
-
-      if (!this.options.extId.endsWith("}")) {
-        this.options.extId += "}"
-      }
-    }
-
     this.options.channel = options.channel || "listed"
 
     if (this.options.license === "inherit") {
