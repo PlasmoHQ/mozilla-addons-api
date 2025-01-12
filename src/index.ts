@@ -148,8 +148,8 @@ export class MozillaAddonsAPI {
         })
         return uploadStatus.valid
       },
-      8,
-      5000
+      60,
+      10000 // 10 min timeout recommended by mozilla
     )
 
     // Wait for upload to be validated
