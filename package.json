@@ -43,7 +43,7 @@
     "@plasmo/config": "workspace:*",
     "@plasmohq/mystic-box": "1.4.0",
     "@plasmohq/rps": "1.8.7",
-    "@types/jsonwebtoken": "9.0.7",
+    "@types/jsonwebtoken": "9.0.8",
     "@types/node": "22.9.0",
     "cross-env": "7.0.3",
     "esbuild": "0.24.0",
