@@ -44,7 +44,7 @@
     "@plasmohq/mystic-box": "1.4.0",
     "@plasmohq/rps": "1.8.7",
     "@types/jsonwebtoken": "9.0.7",
-    "@types/node": "22.9.0",
+    "@types/node": "22.13.4",
     "cross-env": "7.0.3",
     "esbuild": "0.24.0",
     "fflate": "0.8.2",
